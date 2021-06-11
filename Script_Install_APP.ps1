@@ -1,11 +1,13 @@
 # Формируем пути до каталогов и файлов. А так же именя файлов, папок и установленных приложений 
 $LocalDir = "Controll_Staff"
 $localPath = "$env:ProgramData\$LocalDir"
+$FileError = "$localpath\error.txt"
 $NetPath = "\\ilc-fileserv\it\GPO\INSTALL_Control_Security"
 $FileName1 = "agent_ru-5.8.2537-[192.168.1.60].msi" 
 $FileName2 = "grabber.x64.msi"
 $FirstApp = "KickidlerNode"
 $SecondApp = "Tele"
+$Date = "[" + (Get-Date -Format 'dd-MM-yyyy hh:mm:ss') + "]"
 
 # Смотрим поставились ли пакеты приложений. Если поставились - тогда ничего не делаем.
 $ViewAllApp = Get-CimInstance -ClassName Win32_Product
@@ -32,11 +34,13 @@ else
 
     if ($null -eq $SearchFirstAPP)
     {
-        invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName1"}
+        $StatusInstall = invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName1"}
+        $Date + $statusInstall | Out-Null
     }
 
     elseif ($null -eq $SearchSecondAPP)
     {
-        invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName2"}
+        $StatusInstall = invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName2"}
+        $Date + $statusInstall | Out-Null                 
     }
 }
