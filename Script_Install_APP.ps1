@@ -34,10 +34,11 @@ else
 
     if ($null -eq $SearchFirstAPP)
     {
-        & $LocalDir\$FileName1 -q 
+        & msiexec.exe -a -quiet $LocalDir\$FileName1 
     }
 
     elseif ($null -eq $SearchSecondAPP)
     {
-        & $LocalDir\$FileName2 -q 
+        & msiexec.exe -a -quiet $LocalDir\$FileName2 
     }
+}
