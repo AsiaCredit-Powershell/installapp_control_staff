@@ -3,7 +3,7 @@ Function Get-Application {
     (
         $FilterApp
     )
-        # Беру все установленные приложения и ищу в них нужное, записываю в переменную ее имя 
+    # Беру все установленные приложения и ищу в них нужное, записываю в переменную ее имя 
     $GetFilterProgramm = Get-WmiObject -Class Win32_Product | Where-Object  {$_.name -like '*$FilterApp*'}
     $AppNames = $GetFilterProgramm.name 
         

@@ -34,13 +34,10 @@ else
 
     if ($null -eq $SearchFirstAPP)
     {
-        $StatusInstall = invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName1"}
-        $Date + $statusInstall | Out-file -FilePath $FileError -Encoding utf8 
+        & $LocalDir\$FileName1 -q 
     }
 
     elseif ($null -eq $SearchSecondAPP)
     {
-        $StatusInstall = invoke-CimMethod -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation="$localpath\$fileName2"}
-        $Date + $statusInstall | Out-file -FilePath $FileError -Encoding utf8 
+        & $LocalDir\$FileName2 -q 
     }
-}
