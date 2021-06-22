@@ -10,7 +10,7 @@ $SecondApp = "Tele"
 $Date = "[" + (Get-Date -Format 'dd-MM-yyyy hh:mm:ss') + "]"
 
 # Смотрим поставились ли пакеты приложений. Если поставились - тогда ничего не делаем.
-$ViewAllApp = Get-CimInstance -ClassName Win32_Product
+$ViewAllApp = Get-CimInstance -ClassName Win32_Product 
 $SearchApp = $ViewAllApp | Where-Object {$_.name -like "$FirstApp*" -and $_.name -like "$SecondApp*"}
 
 if ($null -ne $SearchApp)
@@ -34,11 +34,11 @@ else
 
     if ($null -eq $SearchFirstAPP)
     {
-        & msiexec.exe -a -quiet $LocalDir\$FileName1 
+        & .\msiexec.exe /a $LocalDir\$FileName1 /quiet /forcerestart /i $FileError
     }
 
     elseif ($null -eq $SearchSecondAPP)
     {
-        & msiexec.exe -a -quiet $LocalDir\$FileName2 
+        & .\msiexec.exe /a $LocalDir\$FileName2 /quiet /forcerestart /i $FileError
     }
 }
