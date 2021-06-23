@@ -34,11 +34,11 @@ else
 
     if ($null -eq $SearchFirstAPP)
     {
-        Start-Process -Wait "msiexec.exe" -ArgumentList "/a", "$LocalDir\$FileName1", "/quiet", "/forcerestart", "/i", "$FileError"
+        Start-Process -Wait "msiexec.exe" -ArgumentList "/i", "$localPath\$FileName1", "quiet"
     }
 
     elseif ($null -eq $SearchSecondAPP)
     {
-        Start-Process -Wait "msiexec.exe" -ArgumentList "/a", "$LocalDir\$FileName1", "/quiet", "/forcerestart", "/i", "$FileError"
+        Start-Process -Wait "msiexec.exe" -ArgumentList "/i", "$localPath\$FileName2", "quiet"
     }
 }
